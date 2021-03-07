@@ -33,11 +33,16 @@ public class DynaTechItems {
     public static final SlimefunItemStack STAINLESS_STEEL = new SlimefunItemStack("STAINLESS_STEEL", Material.IRON_INGOT, "&6Stainless Steel Ingot");
     public static final SlimefunItemStack STAINLESS_STEEL_ROTOR = new SlimefunItemStack("STAINLESS_STEEL_ROTOR", Material.IRON_BLOCK, "&6Stainless Steel Rotor");
     public static final SlimefunItemStack ANCIENT_MACHINE_CORE = new SlimefunItemStack("ANCIENT_MACHINE_CORE", Material.LAPIS_BLOCK, "&6Ancient Machine Core");
+    public static final SlimefunItemStack ANCIENT_MACHINE_CORE_2 = new SlimefunItemStack("ANCIENT_MACHINE_CORE_2", Material.CRYING_OBSIDIAN, "&6Ancient Machine Core MK2");
     public static final SlimefunItemStack VEX_GEM = new SlimefunItemStack("VEX_GEM", SkullItem.fromHash("b91aeca7c17e66d867231b36d96e83c1ede75eaf67ccf3a88dca15d4114ae167"), "&6Vex Gem");
     public static final SlimefunItemStack MACHINE_SCRAP = new SlimefunItemStack("MACHINE_SCRAP", SkullItem.fromHash("13ea401c7e02d13cea1de6835ee9f5c47757d399dae5c2b9c3efde6ae63ea4a2"), "&6Machine Scrap");
     public static final SlimefunItemStack ADVANCED_MACHINE_SCRAP = new SlimefunItemStack("ADVANCED_MACHINE_SCRAP",SkullItem.fromHash("4b57a4c68d1d2c5de978ea6de4db91ef387ca6c37966bb8e7c8826f937e6c3"), "&6Advanced Machine Scrap");
     public static final SlimefunItemStack STAR_DUST = new SlimefunItemStack("STAR_DUST", Material.NETHER_STAR, "&6Star Dust");
-   
+    public static final SlimefunItemStack GHOSTLY_ESSENCE = new SlimefunItemStack("GHOSTLY_ESSENCE", Material.WHITE_DYE, "&6Ghostly Essence");
+    public static final SlimefunItemStack MAGICAL_FLUID_MASS = new SlimefunItemStack("MAGICAL_FLUID_MASS", Material.SNOWBALL, "&6Magical Fluid Mass");
+    public static final SlimefunItemStack REALITY_BENDING_MATERIAL = new SlimefunItemStack("REALITY_BENDING_MATERIAL", Material.LAPIS_LAZULI, "&6Reality Bending Material");
+    public static final SlimefunItemStack TESSERACT_FRAME = new SlimefunItemStack("TESSERACT_FRAME", Material.IRON_BARS, "&6Tesseract Frame");
+
     //Bees
     public static final SlimefunItemStack BEE = new SlimefunItemStack("BEE", SkullItem.fromHash("12724a9a4cdd68ba49415560e5be40b4a1c47cb5be1d66aedb52a30e62ef2d47"), "&6Bee");
     public static final SlimefunItemStack ROBOTIC_BEE = new SlimefunItemStack("ROBOTIC_BEE", SkullItem.fromHash("16f728c89904b2cb57f853d31d0e2061f52917981fedccb1e949528e08eb4140"), "&6Robotic Bee");
@@ -116,6 +121,14 @@ public class DynaTechItems {
             "&f&oHome Sweet Home",
             "",
             "&7CHUNK ID: <id>"
+            );
+
+    public static final SlimefunItemStack TESSERACTING_OBJECT = new SlimefunItemStack("TESSERACTING_OBJECT",
+            Material.FIRE_CHARGE,
+            "&6Tesseracting Object",
+            "",
+            "&fBinds to Tesseracts via right-click",
+            ""
             );
 
     public static final SlimefunItemStack ITEM_BAND_HEALTH = new SlimefunItemStack("ITEM_BAND_HEALTH",
@@ -332,6 +345,18 @@ public class DynaTechItems {
             LoreBuilder.powerPerSecond(48)
             );
 
+    public static final SlimefunItemStack TESSERACT = new SlimefunItemStack("TESSERACT",
+            Material.POLISHED_BLACKSTONE,
+            "&6Tesseract",
+            "",
+            "&fMoves items and power across large spaces.",
+            "&fLink 2 Tesseracts with a Tesseracting Object",
+            "",
+            LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
+            LoreBuilder.powerBuffer(262144),
+            LoreBuilder.powerPerSecond(32)
+            );
+    
     //Generators
     public static final SlimefunItemStack WATER_MILL = new SlimefunItemStack("WATER_MILL",
             Material.COBBLESTONE_WALL,

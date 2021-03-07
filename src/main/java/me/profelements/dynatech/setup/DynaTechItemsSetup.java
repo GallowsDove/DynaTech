@@ -24,6 +24,7 @@ import me.profelements.dynatech.items.electric.GrowthChamberOceanMK2;
 import me.profelements.dynatech.items.electric.MaterialHive;
 import me.profelements.dynatech.items.electric.PotionSprinkler;
 import me.profelements.dynatech.items.electric.SeedPlucker;
+import me.profelements.dynatech.items.electric.Tesseract;
 import me.profelements.dynatech.items.electric.WeatherController;
 import me.profelements.dynatech.items.electric.WirelessCharger;
 import me.profelements.dynatech.items.electric.generators.ChippingGenerator;
@@ -40,6 +41,7 @@ import me.profelements.dynatech.items.tools.DimensionalHome;
 import me.profelements.dynatech.items.tools.ElectricalStimulator;
 import me.profelements.dynatech.items.tools.InventoryFilter;
 import me.profelements.dynatech.items.tools.Scoop;
+import me.profelements.dynatech.items.tools.TesseractingObject;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -69,12 +71,6 @@ public class DynaTechItemsSetup {
                         null, DynaTechItems.STAINLESS_STEEL, null
                 }).register(plugin);
         
-        new SlimefunItem(DynaTechItems.DynaTechGeneral, DynaTechItems.ANCIENT_MACHINE_CORE, RecipeType.MAGIC_WORKBENCH,
-                new ItemStack[] {
-                        SlimefunItems.LEAD_INGOT, SlimefunItems.MAGIC_LUMP_1, SlimefunItems.LEAD_INGOT,
-                        SlimefunItems.MAGIC_LUMP_1, new ItemStack(Material.REDSTONE_BLOCK), SlimefunItems.MAGIC_LUMP_1,
-                        SlimefunItems.LEAD_INGOT, SlimefunItems.MAGIC_LUMP_1, SlimefunItems.LEAD_INGOT
-                }).register(plugin);
         
         new SlimefunItem(DynaTechItems.DynaTechGeneral, DynaTechItems.MACHINE_SCRAP, RecipeType.GRIND_STONE,
                 new ItemStack[] {
@@ -88,29 +84,72 @@ public class DynaTechItemsSetup {
                         SlimefunItems.PROGRAMMABLE_ANDROID_2, null, null,
                         null, null, null,
                         null, null, null,
-                }, new SlimefunItemStack(DynaTechItems.ADVANCED_MACHINE_SCRAP, 8)).register(plugin);
+               }, new SlimefunItemStack(DynaTechItems.ADVANCED_MACHINE_SCRAP, 8)).register(plugin);
+        
+       new VexGem(DynaTechItems.DynaTechGeneral, DynaTechItems.VEX_GEM, RecipeType.MOB_DROP, 
+               new ItemStack[] {
+                       null, null, null,
+                       null, new CustomItem(SkullItem.fromHash("c2ec5a516617ff1573cd2f9d5f3969f56d5575c4ff4efefabd2a18dc7ab98cd"), "&aVex"), null,
+                       null, null, null
+               }).register(plugin);
 
-        new VexGem(DynaTechItems.DynaTechGeneral, DynaTechItems.VEX_GEM, RecipeType.MOB_DROP, 
+        new SlimefunItem(DynaTechItems.DynaTechGeneral, DynaTechItems.STAR_DUST, RecipeType.GRIND_STONE,
+               new ItemStack[] {
+                   StarDustMeteor.STARDUST_METEOR, null, null,
+                   null, null, null,
+                   null, null, null
+               }).register(plugin);
+      
+       new StarDustMeteor(DynaTechItems.DynaTechGeneral).register(plugin);
+
+        new SlimefunItem(DynaTechItems.DynaTechGeneral, DynaTechItems.GHOSTLY_ESSENCE, RecipeType.GRIND_STONE,
+               new ItemStack[] {
+                   DynaTechItems.VEX_GEM
+               }
+       ).register(plugin);
+
+        new SlimefunItem(DynaTechItems.DynaTechGeneral, DynaTechItems.MAGICAL_FLUID_MASS, RecipeType.SMELTERY,
+               new ItemStack[] {
+                   SlimefunItems.MAGIC_LUMP_3, SlimefunItems.ENDER_LUMP_3, SlimefunItems.FIRE_RUNE,
+                   SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE, SlimefunItems.AIR_RUNE, 
+               }, new SlimefunItemStack(DynaTechItems.MAGICAL_FLUID_MASS, 8)
+        ).register(plugin);
+
+        new SlimefunItem(DynaTechItems.DynaTechGeneral, DynaTechItems.REALITY_BENDING_MATERIAL, RecipeType.SMELTERY,
                 new ItemStack[] {
-                        null, null, null,
-                        null, new CustomItem(SkullItem.fromHash("c2ec5a516617ff1573cd2f9d5f3969f56d5575c4ff4efefabd2a18dc7ab98cd"), "&aVex"), null,
-                        null, null, null
+                    SlimefunItems.URANIUM, DynaTechItems.STAR_DUST, DynaTechItems.MAGICAL_FLUID_MASS,
+                    DynaTechItems.GHOSTLY_ESSENCE
                 }).register(plugin);
+
+        new SlimefunItem(DynaTechItems.DynaTechGeneral, DynaTechItems.ANCIENT_MACHINE_CORE, RecipeType.MAGIC_WORKBENCH,
+                new ItemStack[] {
+                        SlimefunItems.LEAD_INGOT, SlimefunItems.MAGIC_LUMP_1, SlimefunItems.LEAD_INGOT,
+                        SlimefunItems.MAGIC_LUMP_1, new ItemStack(Material.REDSTONE_BLOCK), SlimefunItems.MAGIC_LUMP_1,
+                        SlimefunItems.LEAD_INGOT, SlimefunItems.MAGIC_LUMP_1, SlimefunItems.LEAD_INGOT
+                }).register(plugin);
+
+        new SlimefunItem(DynaTechItems.DynaTechGeneral, DynaTechItems.ANCIENT_MACHINE_CORE_2, RecipeType.MAGIC_WORKBENCH,
+               new ItemStack[] {
+                    DynaTechItems.MAGICAL_FLUID_MASS, SlimefunItems.HARDENED_METAL_INGOT, DynaTechItems.MAGICAL_FLUID_MASS,
+                    SlimefunItems.HARDENED_METAL_INGOT, DynaTechItems.ANCIENT_MACHINE_CORE, SlimefunItems.HARDENED_METAL_INGOT,
+                    DynaTechItems.MAGICAL_FLUID_MASS, SlimefunItems.HARDENED_METAL_INGOT, DynaTechItems.MAGICAL_FLUID_MASS
+               }).register(plugin);
+
+        new SlimefunItem(DynaTechItems.DynaTechGeneral, DynaTechItems.TESSERACT_FRAME, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {
+                    DynaTechItems.STAINLESS_STEEL, DynaTechItems.REALITY_BENDING_MATERIAL, DynaTechItems.STAINLESS_STEEL, 
+                    DynaTechItems.REALITY_BENDING_MATERIAL, SlimefunItems.WITHER_PROOF_GLASS, DynaTechItems.REALITY_BENDING_MATERIAL,
+                    DynaTechItems.STAINLESS_STEEL, DynaTechItems.REALITY_BENDING_MATERIAL, DynaTechItems.STAINLESS_STEEL
+                }
+                ).register(plugin);
         
         RecipeType.MAGIC_WORKBENCH.register(new ItemStack[] {
             null, SlimefunItems.SYNTHETIC_SAPPHIRE, null,
             new ItemStack(Material.PHANTOM_MEMBRANE), SlimefunItems.MAGIC_LUMP_3, new ItemStack(Material.PHANTOM_MEMBRANE),
             DynaTechItems.STAR_DUST, DynaTechItems.STAR_DUST, DynaTechItems.STAR_DUST
         }, DynaTechItems.VEX_GEM);
-
-        new SlimefunItem(DynaTechItems.DynaTechGeneral, DynaTechItems.STAR_DUST, RecipeType.GRIND_STONE,
-                new ItemStack[] {
-                    StarDustMeteor.STARDUST_METEOR, null, null,
-                    null, null, null,
-                    null, null, null
-                }).register(plugin);
             
-        new StarDustMeteor(DynaTechItems.DynaTechGeneral).register(plugin);
+       
 
         //Bees
         new Bee(DynaTechItems.DynaTechGeneral, DynaTechItems.BEE, DynaTechItems.DynaTechScoop,
@@ -180,7 +219,13 @@ public class DynaTechItemsSetup {
                     SlimefunItems.BRONZE_INGOT, new ItemStack(Material.BLAZE_ROD), null,
                     SlimefunItems.SYNTHETIC_SAPPHIRE, SlimefunItems.BRONZE_INGOT, null
                 }).register(plugin);
-        
+        new TesseractingObject(DynaTechItems.DynaTechGeneral, DynaTechItems.TESSERACTING_OBJECT, RecipeType.ENHANCED_CRAFTING_TABLE, 
+                new ItemStack[] {
+                    SlimefunItems.MAGIC_EYE_OF_ENDER, DynaTechItems.MAGICAL_FLUID_MASS, SlimefunItems.MAGIC_EYE_OF_ENDER, 
+                    DynaTechItems.MAGICAL_FLUID_MASS, DynaTechItems.REALITY_BENDING_MATERIAL, DynaTechItems.MAGICAL_FLUID_MASS,
+                    null, SlimefunItems.HARDENED_METAL_INGOT, null
+                }, new SlimefunItemStack(DynaTechItems.TESSERACTING_OBJECT, 2)
+        ).register(plugin);
         new ItemBand(DynaTechItems.DynaTechGeneral, DynaTechItems.ITEM_BAND_HEALTH, RecipeType.MAGIC_WORKBENCH,
                 new ItemStack[] {
                     new ItemStack(Material.GOLDEN_CARROT), new ItemStack(Material.NETHER_STAR), new ItemStack(Material.GOLDEN_CARROT),
@@ -396,6 +441,21 @@ public class DynaTechItemsSetup {
         )
         .setEnergyCapacity(1024)
         .setEnergyConsumption(48)
+        .setProcessingSpeed(1)
+        .register(plugin);
+
+        //Make a more advanced crafter for machines that do complicated stuff like this
+        new Tesseract(DynaTechItems.DynaTechGeneral, DynaTechItems.TESSERACT, RecipeType.ENHANCED_CRAFTING_TABLE, 
+                new ItemStack[] {
+                    DynaTechItems.REALITY_BENDING_MATERIAL, DynaTechItems.ANCIENT_MACHINE_CORE_2, DynaTechItems.REALITY_BENDING_MATERIAL,
+                    DynaTechItems.ANCIENT_MACHINE_CORE_2, DynaTechItems.TESSERACT_FRAME, DynaTechItems.ANCIENT_MACHINE_CORE_2,
+                    DynaTechItems.REALITY_BENDING_MATERIAL, DynaTechItems.ANCIENT_MACHINE_CORE_2, DynaTechItems.REALITY_BENDING_MATERIAL,
+
+                },
+                new SlimefunItemStack(DynaTechItems.TESSERACT, 2)
+        )
+        .setEnergyCapacity(262144)
+        .setEnergyConsumption(64)
         .setProcessingSpeed(1)
         .register(plugin);
         
