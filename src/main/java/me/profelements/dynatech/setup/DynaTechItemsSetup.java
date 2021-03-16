@@ -1,5 +1,8 @@
 package me.profelements.dynatech.setup;
 
+import io.github.mooy1.infinityexpansion.implementation.mobdata.EmptyDataCard;
+import io.github.mooy1.infinityexpansion.implementation.mobdata.MobDataCard;
+import io.github.mooy1.infinityexpansion.implementation.mobdata.MobDataTier;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
@@ -33,12 +36,14 @@ import me.profelements.dynatech.items.electric.growthchambers.GrowthChamberOcean
 import me.profelements.dynatech.items.electric.growthchambers.GrowthChamberOceanMK2;
 import me.profelements.dynatech.items.misc.Bee;
 import me.profelements.dynatech.items.misc.ItemBand;
+import me.profelements.dynatech.items.misc.MobDropItem;
 import me.profelements.dynatech.items.misc.StarDustMeteor;
 import me.profelements.dynatech.items.misc.VexGem;
 import me.profelements.dynatech.items.tools.AngelGem;
 import me.profelements.dynatech.items.tools.DimensionalHome;
 import me.profelements.dynatech.items.tools.ElectricalStimulator;
 import me.profelements.dynatech.items.tools.InventoryFilter;
+import me.profelements.dynatech.items.tools.Orechid;
 import me.profelements.dynatech.items.tools.Scoop;
 
 import org.bukkit.Material;
@@ -112,6 +117,13 @@ public class DynaTechItemsSetup {
             
         new StarDustMeteor(DynaTechItems.DynaTechGeneral).register(plugin);
 
+        new MobDropItem(DynaTechItems.DynaTechGeneral, DynaTechItems.GHOSTLY_ESSENCE, RecipeType.MOB_DROP, 
+        new ItemStack[] {
+                null, null, null,
+                null, new CustomItem(SkullItem.fromHash("c2ec5a516617ff1573cd2f9d5f3969f56d5575c4ff4efefabd2a18dc7ab98cd"), "&aVex"), null,
+                null, null, null
+        }, 80).register(plugin);
+
         //Bees
         new Bee(DynaTechItems.DynaTechGeneral, DynaTechItems.BEE, DynaTechItems.DynaTechScoop,
                 new ItemStack[] {
@@ -123,16 +135,16 @@ public class DynaTechItemsSetup {
 
         new Bee(DynaTechItems.DynaTechGeneral, DynaTechItems.ROBOTIC_BEE, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {
-                        SlimefunItems.REINFORCED_PLATE, SlimefunItems.REINFORCED_PLATE, SlimefunItems.REINFORCED_PLATE,
-                        DynaTechItems.VEX_GEM, DynaTechItems.MACHINE_SCRAP, DynaTechItems.VEX_GEM,
-                        SlimefunItems.REINFORCED_PLATE, DynaTechItems.ANCIENT_MACHINE_CORE, SlimefunItems.REINFORCED_PLATE
+                        SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REINFORCED_ALLOY_INGOT,
+                        SlimefunItems.SYNTHETIC_SAPPHIRE, DynaTechItems.MACHINE_SCRAP, SlimefunItems.SYNTHETIC_SAPPHIRE,
+                        SlimefunItems.REINFORCED_ALLOY_INGOT, DynaTechItems.ANCIENT_MACHINE_CORE, SlimefunItems.REINFORCED_ALLOY_INGOT
                 }, 6
                 ).register(plugin);
 
         new Bee(DynaTechItems.DynaTechGeneral, DynaTechItems.ADVANCED_ROBOTIC_BEE, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {
                 SlimefunItems.REINFORCED_PLATE, SlimefunItems.REINFORCED_PLATE, SlimefunItems.REINFORCED_PLATE,
-                DynaTechItems.ANGEL_GEM, DynaTechItems.ADVANCED_MACHINE_SCRAP, DynaTechItems.ANGEL_GEM,
+                DynaTechItems.VEX_GEM, DynaTechItems.ADVANCED_MACHINE_SCRAP, DynaTechItems.VEX_GEM,
                 SlimefunItems.GOLD_24K_BLOCK, DynaTechItems.ANCIENT_MACHINE_CORE, SlimefunItems.GOLD_24K_BLOCK
                 }, 8
                 ).register(plugin);
@@ -196,6 +208,14 @@ public class DynaTechItemsSetup {
                     SlimefunItems.COBALT_PICKAXE, new ItemStack(Material.NETHER_STAR), SlimefunItems.COBALT_PICKAXE
                 }, new PotionEffect[] {new PotionEffect(PotionEffectType.FAST_DIGGING, 20*15, 1, true) }    
         ).register(plugin);
+
+        if (DynaTech.isInfinityExpansionInstalled()) {
+            new MobDataCard("Vex", MobDataTier.HOSTILE, new ItemStack[] {
+                new SlimefunItemStack(DynaTechItems.VEX_GEM, 16), new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), new SlimefunItemStack(DynaTechItems.VEX_GEM, 16),
+                new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), EmptyDataCard.ITEM, new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16),
+                new SlimefunItemStack(DynaTechItems.VEX_GEM, 16), new SlimefunItemStack(DynaTechItems.GHOSTLY_ESSENCE, 16), new SlimefunItemStack(DynaTechItems.VEX_GEM, 16)
+            }, DynaTechItems.VEX_GEM, 16, DynaTechItems.GHOSTLY_ESSENCE, 1).register(plugin);
+        }
 
         //Machines
         if (DynaTech.isExoticGardenInstalled()) {
@@ -354,8 +374,8 @@ public class DynaTechItemsSetup {
         
         new MaterialHive(DynaTechItems.DynaTechGeneral, DynaTechItems.MATERIAL_HIVE, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {
-                    SlimefunItems.REINFORCED_PLATE, SlimefunItems.BOOSTED_URANIUM, SlimefunItems.REINFORCED_PLATE,
-                    SlimefunItems.REINFORCED_PLATE, new ItemStack(Material.BEEHIVE), SlimefunItems.REINFORCED_PLATE,
+                    SlimefunItems.HARDENED_METAL_INGOT, SlimefunItems.SYNTHETIC_DIAMOND, SlimefunItems.HARDENED_METAL_INGOT,
+                    SlimefunItems.HARDENED_METAL_INGOT, new ItemStack(Material.BEEHIVE), SlimefunItems.HARDENED_METAL_INGOT,
                     DynaTechItems.ADVANCED_MACHINE_SCRAP, DynaTechItems.MACHINE_SCRAP, DynaTechItems.ADVANCED_MACHINE_SCRAP
                 })
                 .setEnergyCapacity(8192)
@@ -399,6 +419,18 @@ public class DynaTechItemsSetup {
         .setProcessingSpeed(1)
         .register(plugin);
         
+        new Orechid(DynaTechItems.DynaTechGeneral, DynaTechItems.ORECHID, RecipeType.MAGIC_WORKBENCH,
+                new ItemStack[] {
+                    SlimefunItems.ENDER_RUNE, SlimefunItems.ENDER_RUNE, SlimefunItems.ENDER_RUNE,
+                    SlimefunItems.MAGIC_LUMP_3, new ItemStack(Material.WITHER_ROSE), SlimefunItems.MAGIC_LUMP_3,
+                    SlimefunItems.HARDENED_METAL_INGOT, SlimefunItems.REINFORCED_PLATE, SlimefunItems.HARDENED_METAL_INGOT
+                }
+        )
+        .setEnergyCapacity(16384)
+        .setEnergyConsumption(1024)
+        .setProcessingSpeed(1)
+        .register(plugin);
+
         //Generators
         new HydroGenerator(DynaTechItems.DynaTechGeneral, DynaTechItems.WATER_MILL, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {

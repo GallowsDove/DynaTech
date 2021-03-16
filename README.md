@@ -16,7 +16,7 @@ Most of these could possibly be overpowered or heavily underpowered.
 - **Wireless Charger** - Charges Rechargeable Items in a Players inventory in a 16 block radius around it
 - **Seed Plucker** - Plucks seed from plant-based material, supports Exotic Garden Fruits, but not essences.
 - **Item Band Manager** - Manages the application and ripping of Item Bands.
-
+- **Orechid** - Changes Stone and Netherack into Overworld and Nether ores respectively
 ## Generators
 - **Hydro Generator** - Generates energy from flowing water (Waterlog the generator)
 - **Dragon Egg Generator** - Generates energy from the warmth of a dragon egg. (Place the dragon egg on top)
@@ -40,6 +40,10 @@ Most of these could possibly be overpowered or heavily underpowered.
 ## Item Bands 
 - **Healthy Item Band** - When applied to armor or weapons gain 4 hearts while wearing or holding the item in your main hand.
 - **Hasty Item Band** - When applied to armor or weapons gain 2 levels of haste while wearing or hold the item in your main hand.
+
+## Integrations 
+ - **Vex Mob Data Card** - If InfinityExpansion is installed then you get a Vex Mob Data Card to help with Ghostly Essence and Vex Gems
+
 ## Credits
  [NCBPFluffyBear](https://github.com/ncbpfluffybear) for their autocrafter code since it helped alot with the Auto-Kitchen.
 

@@ -7,9 +7,9 @@ import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import io.github.mooy1.infinitylib.PluginUtils;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
-import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
 import me.profelements.dynatech.items.backpacks.PicnicBasket;
 import me.profelements.dynatech.items.misc.DimensionalHomeDimension;
 import me.profelements.dynatech.items.tools.ElectricalStimulator;
@@ -27,12 +27,14 @@ public class DynaTech extends JavaPlugin implements SlimefunAddon {
 
     private static DynaTech instance;
     private static boolean exoticGardenInstalled;
+    private static boolean infinityExpansionInstalled;
     
     @Override
     public void onEnable() {
         instance = this;
         exoticGardenInstalled = Bukkit.getServer().getPluginManager().isPluginEnabled("ExoticGarden");
-        
+        infinityExpansionInstalled = Bukkit.getServer().getPluginManager().isPluginEnabled("InfinityExpansion");
+
         saveDefaultConfig();
         
         Config cfg = new Config(this);
@@ -44,10 +46,6 @@ public class DynaTech extends JavaPlugin implements SlimefunAddon {
             worldCreator.generator(new DimensionalHomeDimension());
             worldCreator.createWorld();
         }
-        
-        if (cfg.getBoolean("options.auto-update")) {
-            new GitHubBuildsUpdater(this, getFile(), "ProfElements/DynaTech/master").start();
-        }
 
         DynaTechItemsSetup.setup(this);
         new PicnicBasketListener(this, (PicnicBasket) DynaTechItems.PICNIC_BASKET.getItem());
@@ -56,6 +54,9 @@ public class DynaTech extends JavaPlugin implements SlimefunAddon {
 
         //Tasks
         getServer().getScheduler().runTaskTimerAsynchronously(DynaTech.getInstance(), new ItemBandTask(), 0L, 5 * 20L);
+
+        PluginUtils.setup("DynaTech", this, "ProfElements/DynaTech/master", getFile());
+        PluginUtils.startTicker(() -> {});
     }
 
     @Override
@@ -83,6 +84,10 @@ public class DynaTech extends JavaPlugin implements SlimefunAddon {
 
     public static boolean isExoticGardenInstalled() {
         return exoticGardenInstalled;
+    }
+
+    public static boolean isInfinityExpansionInstalled() {
+        return infinityExpansionInstalled;
     }
 
     @Nullable
